@@ -1,0 +1,59 @@
+
+@mixin  minMedium {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+/* Start Overlay Mixin */
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* End Overlay Mixin */
+
+/* Start Prefix Mixin */
+@mixin prefixer ($property , $value , $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+/* End Prefix Mixin */
+
+/* Start Animation Prefix Mixin */
+@mixin keyFrame ($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+/* End Animation Prefix Mixin */
+
+
+/* Start Mixin For Opacity For Other Browsers */
+@mixin opacity ($value) {
+  zoom: 1;
+  $opacity-ie: $value * 100;
+  filter: alpha (opacity=$opacity-ie);
+  opacity: $value;
+}
+/* End Mixin For Opacity For Other Browsers */
+
+/* Start Mixin For Transition */
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+/* End Mixin For Transition */
+
